@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Send, Bot, FileText, Download, CheckCircle, AlertCircle, XCircle, BrainCircuit, MessageSquare, Leaf } from 'lucide-react';
-import Link from 'next/link';
+import { Send, Bot, FileText, Download, CheckCircle, AlertCircle, XCircle, BrainCircuit } from 'lucide-react';
+import Link from 'next/link';        // 제일 위에 추가 필수!
+import { Leaf } from 'lucide-react';     // 이것도 추가!
 
 interface Message {
   id: number;
@@ -18,14 +19,14 @@ interface Paragraph {
   comment?: string;
 }
 
-export default function HomePage() {
+export default function ReportPage() {
   const [activeTab, setActiveTab] = useState<'consult' | 'report'>('consult');
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     { id: 1, type: 'ai', text: 'TCFD 보고서.pdf가 업로드되어 분석이 완료되었습니다.' },
     { id: 2, type: 'ai', text: 'IFRS S2 기준에 맞춰 부족한 정보를 채워드릴게요!' },
     { id: 3, type: 'ai', text: '질문 (S2-5 거버넌스): 기후 리스크 감독 주체는 누구인가요?' },
-    { id: 4, type: 'user', text: '이사회 산하 \'지속가능경영위원회\'가 분기별로 감독합니다.' },
+    { id: 4, type: 'user', text: '이사회 산하 ‘지속가능경영위원회’가 분기별로 감독합니다.' },
     { id: 5, type: 'ai', text: '감사합니다! S2-5 문단이 우측에 생성되었습니다.\n다음 질문: Scope 1·2 배출량의 기준연도는 언제인가요?' },
   ]);
 
@@ -80,13 +81,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <Link 
-                href="/chat"
-                className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-5 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
-              >
-                <MessageSquare className="w-5 h-5" />
-                <span>채팅</span>
-              </Link>
+              <span className="text-sm text-gray-600">보고서 버전: v1.0</span>
               <Link 
                 href="/lca"
                 className="flex items-center space-x-3 bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
@@ -94,7 +89,7 @@ export default function HomePage() {
                 <Leaf className="w-6 h-6" />
                 <span className="text-lg">LCA 산정하기</span>
               </Link>
-              <span className="text-sm text-gray-600">보고서 버전: v1.0</span>
+
               {activeTab === 'report' && (
                 <>
                   <button className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">
@@ -110,6 +105,8 @@ export default function HomePage() {
             </div>
           </div>
         </header>
+
+        
 
         {/* 탭 */}
         <div className="pt-20 bg-white border-b border-gray-200">
@@ -227,7 +224,7 @@ export default function HomePage() {
                 <div className="p-16 space-y-20">
                   <section>
                     <h2 className="text-4xl font-bold border-b-4 border-blue-600 inline-block pb-2">1. Governance</h2>
-                    <p className="mt-8 text-xl text-gray-700 leading-relaxed">당사는 이사회 산하 '지속가능경영위원회'를 통해 기후 리스크를 체계적으로 감독하고 있습니다...</p>
+                    <p className="mt-8 text-xl text-gray-700 leading-relaxed">당사는 이사회 산하 ‘지속가능경영위원회’를 통해 기후 리스크를 체계적으로 감독하고 있습니다...</p>
                   </section>
                   {/* 더 많은 섹션 추가 가능 */}
                 </div>
